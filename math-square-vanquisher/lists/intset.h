@@ -9,7 +9,8 @@
 #include <string>
 
 /**
- * IntSet data type: an array of fixed size where the following invariant holds:
+ * IntSet data type: an integer array of fixed size where the following invariant
+ *  holds:
  *  INVARIANT: the 0th slot of an integer set array records its size (number of
  *             other filled spots in the array).
  */

@@ -9,10 +9,11 @@ void Solver::SetBoard(Board * b) {
     board = b;
     width = b->width;
     height = b->height;
+    boardlength = width * height;
 }
 
 bool Solver::IsReady() {
-    if (width <= 0 || height <= 0)
+    if (boardlength <= 0)
         return false;
     return board->IsComplete();
 }

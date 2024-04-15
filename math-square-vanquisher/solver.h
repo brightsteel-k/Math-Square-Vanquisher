@@ -43,8 +43,9 @@ class Solver {
 
     protected:
         Board * board;
-        int width = 0;
-        int height = 0;
+        int width;
+        int height;
+        int boardlength = 0;
 };
 #include "solver.cpp"
 #endif

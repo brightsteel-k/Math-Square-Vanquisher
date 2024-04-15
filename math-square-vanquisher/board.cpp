@@ -5,7 +5,7 @@
 
 #include "board.h"
 
-Board::Board(unsigned int w, unsigned int h) {
+Board::Board(int w, int h) {
     width = w;
     height = h;
 
@@ -34,7 +34,7 @@ Board::~Board() {
     delete[] rowReady;
 }
 
-void Board::SetColumn(unsigned int col, int target, ...) {
+void Board::SetColumn(int col, int target, ...) {
     va_list ops;
     va_start(ops, 0);
     for (int i = 0; i < height - 1; i++) {
@@ -46,7 +46,7 @@ void Board::SetColumn(unsigned int col, int target, ...) {
         colReady[col] = true;
 }
 
-void Board::SetRow(unsigned int row, int target, ...) {
+void Board::SetRow(int row, int target, ...) {
     va_list ops;
     va_start(ops, 0);
     for (int i = 0; i < width - 1; i++) {
@@ -67,7 +67,7 @@ bool Board::IsComplete() {
         if (!rowReady[y])
             return false;
 
-    return true;
+    return width * height >= 4;
 }
 
 std::string Board::ToString() {

@@ -9,12 +9,17 @@
 #include <string>
 #include "operators.h"
 
+/**
+ * Board: represents an empty math square board, defined
+ *   by its dimensions and the equations along its rows and columns.
+ * INVARIANT: the board's dimensions must be larger than 2x2.
+ */
 class Board {
     public:
         typedef double (*Operator)(double, double);
 
-        unsigned int width;
-        unsigned int height;
+        int width;
+        int height;
 
         Operator** colOperators;
         Operator** rowOperators;
@@ -35,7 +40,7 @@ class Board {
          * @param h the height of the board.
          * 
          */
-        Board(unsigned int w, unsigned int h);
+        Board(int w, int h);
 
         /**
          * Destructor
@@ -49,7 +54,7 @@ class Board {
          * @param ops (...) the operators along the column; must provide
          *            at least height - 1 operators.
          */
-        void SetColumn(unsigned int col, int target, ...);
+        void SetColumn(int col, int target, ...);
         
         /**
          * Sets the equation along row row < height.
@@ -58,7 +63,7 @@ class Board {
          * @param ops (...) the operators along the row; must provide
          *            at least width - 1 operators.
          */
-        void SetRow(unsigned int row, int target, ...);
+        void SetRow(int row, int target, ...);
 
         /**
          * Determines whether the Board has been fully initialized yet.
