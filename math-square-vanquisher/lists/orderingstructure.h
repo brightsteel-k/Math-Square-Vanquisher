@@ -5,12 +5,18 @@
 #ifndef _ORDERINGSTRUCTURE_H_
 #define _ORDERINGSTRUCTURE_H_
 
+
 /**
  * OrderingStructure: represents an interface for a structure that orders
  *   items placed into it. 
  */
 template <class T> class OrderingStructure {
     public:
+        struct Node {
+          T data;
+          Node* next;
+        };
+
         virtual ~OrderingStructure() {
           // nothing
         }
@@ -18,19 +24,20 @@ template <class T> class OrderingStructure {
         /**
          * Adds the given element to the ordering structure.
          * @param item: the item to be added.
-         * @post: item has been added to the ordering structure.
          */
         virtual void Add(const T& item) = 0;
 
         /**
-         * Removes an element from the ordering structure. 
          * @pre: the structure is not empty.
-         * @post: the appropriate element is removed from the ordering structure.
+         * 
+         * Removes an element from the ordering structure. 
          * @return: an element from the ordering structure.
          */
         virtual T Remove() = 0;
 
         /**
+         * @pre: the structure is not empty.
+         * 
          * Looks at the next element of the ordering structure, but does
          * not remove it.
          * @return: the next element on the ordering structure.
@@ -39,8 +46,7 @@ template <class T> class OrderingStructure {
 
         /**
          * Determines if the ordering structure is empty.
-         * @return: true if there are no elements in the ordering structure,
-         *          false otherwise.
+         * @return: true iff there are no elements in the ordering structure.
          */
         virtual bool IsEmpty() const = 0;
 };
