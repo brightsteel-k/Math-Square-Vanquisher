@@ -34,7 +34,7 @@ Board::~Board() {
     delete[] rowReady;
 }
 
-void Board::setColumn(unsigned int col, int target, ...) {
+void Board::SetColumn(unsigned int col, int target, ...) {
     va_list ops;
     va_start(ops, 0);
     for (int i = 0; i < height - 1; i++) {
@@ -46,7 +46,7 @@ void Board::setColumn(unsigned int col, int target, ...) {
         colReady[col] = true;
 }
 
-void Board::setRow(unsigned int row, int target, ...) {
+void Board::SetRow(unsigned int row, int target, ...) {
     va_list ops;
     va_start(ops, 0);
     for (int i = 0; i < width - 1; i++) {
@@ -58,7 +58,7 @@ void Board::setRow(unsigned int row, int target, ...) {
         rowReady[row] = true;
 }
 
-std::string Board::printBoard() {
+std::string Board::PrintBoard() {
     std::string result = "";
     for (int y = 0; y < height; y++) {
         // Number row

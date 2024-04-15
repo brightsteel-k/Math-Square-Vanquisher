@@ -39,14 +39,14 @@ int main() {
 
 
     Board board(3);
-    board.setColumn(0, 3, MUL, DIV );
-    board.setColumn(1, 2, ADD, DIV );
-    board.setColumn(2, -12, SUB, MUL );
-    board.setRow(0, 12, ADD, SUB );
-    board.setRow(1, 6, ADD, SUB );
-    board.setRow(2, 4, ADD, DIV );
+    board.SetColumn(0, 3, MUL, DIV );
+    board.SetColumn(1, 2, ADD, DIV );
+    board.SetColumn(2, -12, SUB, MUL );
+    board.SetRow(0, 12, ADD, SUB );
+    board.SetRow(1, 6, ADD, SUB );
+    board.SetRow(2, 4, ADD, DIV );
     
-    std::cout << board.printBoard() << std::endl;
+    std::cout << board.PrintBoard() << std::endl;
 
     return 0;
 }

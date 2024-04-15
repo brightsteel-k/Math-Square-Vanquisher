@@ -13,6 +13,16 @@ class Board {
     public:
         typedef double (*Operator)(double, double);
 
+        unsigned int width;
+        unsigned int height;
+
+        Operator** colOperators;
+        Operator** rowOperators;
+        int* colTargets;
+        int* rowTargets;
+        bool* colReady;
+        bool* rowReady;
+
         /**
          * Constructor: creates a d by d board.
          * @param d the width and height of the board.
@@ -39,7 +49,7 @@ class Board {
          * @param ops (...) the operators along the column; must provide
          *            at least height - 1 operators.
          */
-        void setColumn(unsigned int col, int target, ...);
+        void SetColumn(unsigned int col, int target, ...);
         
         /**
          * Sets the equation along row row < height.
@@ -48,24 +58,29 @@ class Board {
          * @param ops (...) the operators along the row; must provide
          *            at least width - 1 operators.
          */
-        void setRow(unsigned int row, int target, ...);
+        void SetRow(unsigned int row, int target, ...);
+
+        /**
+         * Determines whether the Board has been fully initialized yet.
+         * @return true iff all the row and column equations have been initialized.
+         */
+        bool IsComplete() {
+            for (int x = 0; x < width; x++)
+                if (!colReady[x])
+                    return false;
+            
+            for (int y = 0; y < height; y++)
+                if (!rowReady[y])
+                    return false;
+
+            return true;
+        }
 
         /**
          * Prints board equations and in appropriate configuration.
          * @return the board layout, in a string
          */
-        std::string printBoard();
-
-    private:
-        unsigned int width;
-        unsigned int height;
-
-        Operator** colOperators;
-        Operator** rowOperators;
-        int* colTargets;
-        int* rowTargets;
-        bool* colReady;
-        bool* rowReady;
+        std::string PrintBoard();
 
 };
 
