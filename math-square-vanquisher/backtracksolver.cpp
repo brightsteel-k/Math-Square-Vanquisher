@@ -7,7 +7,36 @@
 
 
 BacktrackSolver::BacktrackSolver(bool depthFirstSearch) {
-    // Set OrderingStructure types accordingly
+    if (depthFirstSearch) {
+        boardsToTest = new Stack<int*>();
+        optionsToTest = new Stack<int*>();
+    } else {
+        boardsToTest = new Queue<int*>();
+        optionsToTest = new Queue<int*>();
+    }
+}
+
+void BacktrackSolver::SetBoard(Board * b) {
+    if (boardNumbers != NULL) {
+        delete[] boardNumbers;
+        delete[] boardOptions;
+    }
+    Solver::SetBoard(b);
+
+    boardNumbers = new int[width * height];
+    boardOptions = new int[width * height];
+}
+
+BacktrackSolver::~BacktrackSolver() {
+    while (!boardsToTest->IsEmpty()) {
+        delete[] boardsToTest->Remove();
+    }
+    delete boardsToTest;
+
+    while (!optionsToTest->IsEmpty()) {
+        delete[] optionsToTest->Remove();
+    }
+    delete optionsToTest;
 }
 
 int * BacktrackSolver::BeginSolving() {

@@ -1,6 +1,6 @@
 /**
  * @file        calculator.h
- * @description Definition of an abstract calculator class.
+ * @description Definition of an abstract solver class.
  */
 #ifndef _CALCULATOR_H_
 #define _CALCULATOR_H_
@@ -27,7 +27,13 @@ class Solver {
          * Sets the Board that this Solver will attempt to solve.
          * @param b the Board to solve.
          */
-        void SetBoard(Board b);
+        virtual void SetBoard(Board * b);
+
+        /**
+         * Determines whether the Solver is prepared with a board to solve.
+         * @return true iff a complete Board has been properly loaded in.
+         */
+        virtual bool IsReady();
 
         /**
          * Signals the Solver to begin solving.
@@ -36,6 +42,9 @@ class Solver {
         virtual int * BeginSolving();
 
     protected:
-        Board board;
+        Board * board;
+        int width = 0;
+        int height = 0;
 };
+#include "solver.cpp"
 #endif

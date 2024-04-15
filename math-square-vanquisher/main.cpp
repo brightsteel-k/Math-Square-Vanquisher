@@ -3,8 +3,8 @@
 #include <iostream>
 #include "lists/stack.h"
 #include "lists/queue.h"
-#include "operators.h"
-#include "board.h"
+#include "lists/intset.h"
+#include "backtracksolver.h"
 
 
 #define OPERATORS Board::Operator[]
@@ -17,36 +17,27 @@
 int main() {
     printf("TESTING TIME!\n\n");
 
-    Queue<int> q;
-    q.Enqueue(1);
-    q.Enqueue(2);
-    q.Enqueue(3);
+    Board * board = new Board(3);
+    board->SetColumn(0, 3, MUL, DIV );
+    board->SetColumn(1, 2, ADD, DIV );
+    board->SetColumn(2, -12, SUB, MUL );
+    board->SetRow(0, 12, ADD, SUB );
+    board->SetRow(1, 6, ADD, SUB );
+    board->SetRow(2, 4, ADD, DIV );
     
-    printf("- - Queue - - \n");
-    for (int i = 0; i < 3; i++) {
-        printf("> %d\n", q.Dequeue());
-    }
-    
-    Stack<int> s;
-    s.Push(1);
-    s.Push(2);
-    s.Push(3);
+    std::cout << board->ToString() << std::endl;
 
-    printf("- - Stack - - \n");
-    for (int i = 0; i < 3; i++) {
-        printf("> %d\n", s.Pop());
-    }
+    int* setOne = IntSet::Generate(5);
+    int* setTwo = IntSet::Omit(setOne, 0);
+    int* setThree = IntSet::Omit(setOne, 3);
+    int* setFour = IntSet::Omit(setOne, 4);
+    int* setFive = IntSet::Omit(setOne, 6);
 
-
-    Board board(3);
-    board.SetColumn(0, 3, MUL, DIV );
-    board.SetColumn(1, 2, ADD, DIV );
-    board.SetColumn(2, -12, SUB, MUL );
-    board.SetRow(0, 12, ADD, SUB );
-    board.SetRow(1, 6, ADD, SUB );
-    board.SetRow(2, 4, ADD, DIV );
-    
-    std::cout << board.PrintBoard() << std::endl;
+    std::cout << "Set One: " << IntSet::ToString(setOne) << std::endl;
+    std::cout << "Set Two: " << IntSet::ToString(setTwo) << std::endl;
+    std::cout << "Set Three: " << IntSet::ToString(setThree) << std::endl;
+    std::cout << "Set Four: " << IntSet::ToString(setFour) << std::endl;
+    std::cout << "Set Five: " << IntSet::ToString(setFive) << std::endl;
 
     return 0;
 }

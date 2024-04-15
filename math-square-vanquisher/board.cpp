@@ -58,7 +58,19 @@ void Board::SetRow(unsigned int row, int target, ...) {
         rowReady[row] = true;
 }
 
-std::string Board::PrintBoard() {
+bool Board::IsComplete() {
+    for (int x = 0; x < width; x++)
+        if (!colReady[x])
+            return false;
+    
+    for (int y = 0; y < height; y++)
+        if (!rowReady[y])
+            return false;
+
+    return true;
+}
+
+std::string Board::ToString() {
     std::string result = "";
     for (int y = 0; y < height; y++) {
         // Number row

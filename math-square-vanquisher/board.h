@@ -64,23 +64,13 @@ class Board {
          * Determines whether the Board has been fully initialized yet.
          * @return true iff all the row and column equations have been initialized.
          */
-        bool IsComplete() {
-            for (int x = 0; x < width; x++)
-                if (!colReady[x])
-                    return false;
-            
-            for (int y = 0; y < height; y++)
-                if (!rowReady[y])
-                    return false;
-
-            return true;
-        }
+        bool IsComplete();
 
         /**
-         * Prints board equations and in appropriate configuration.
-         * @return the board layout, in a string
+         * Prints board equations in appropriate configuration to a string.
+         * @return the board layout, in a string.
          */
-        std::string PrintBoard();
+        std::string ToString();
 
 };
 

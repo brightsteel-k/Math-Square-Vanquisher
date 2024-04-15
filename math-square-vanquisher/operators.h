@@ -43,6 +43,10 @@ struct Operators {
         return x / y;
     }
 
+    /**
+     * Gets the name of the given operator.
+     * @return string containing the name of the operator.
+     */ 
     static std::string GetName(Operator op) {
         if (op == Add) { return "addition"; }
         if (op == Sub) { return "subtraction"; }
@@ -51,6 +55,10 @@ struct Operators {
         return "";
     }
 
+    /**
+     * Gets the symbol corresponding to the given operator.
+     * @return string containing the symbol for the operator.
+     */ 
     static std::string GetSymbol(Operator op) {
         if (op == Add) { return "+"; }
         if (op == Sub) { return "-"; }

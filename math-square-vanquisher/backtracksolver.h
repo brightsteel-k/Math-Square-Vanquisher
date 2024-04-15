@@ -27,13 +27,27 @@ class BacktrackSolver : public Solver {
         ~BacktrackSolver();
 
         /**
+         * Sets the Board that this Backtrackolver will attempt to solve.
+         * See Solver::SetBoard()
+         * @param b the Board to solve.
+         */
+        void SetBoard(Board * b);
+
+        /**
          * Signals the BacktrackSolver to begin solving.
          * @return the solution sequence of numbers.
          */
         int * BeginSolving();
 
+        /**
+         * Clears internal lists that keep track of board solving progress.
+         */
+        void DeleteBoardLists();
+
     private:
-        OrderingStructure<int> * boardsToTest;
-        OrderingStructure<int> * optionsToTest;
+        int * boardNumbers = NULL;
+        OrderingStructure<int*> * boardsToTest = NULL;
+        int * boardOptions = NULL;
+        OrderingStructure<int*> * optionsToTest = NULL;
 };
 #endif
