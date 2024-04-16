@@ -78,7 +78,7 @@ std::string Board::ToString() {
         for (int x = 0; x < width - 1; x++) {
             line += "# " + Operators::GetSymbol(rowOperators[y][x]) + " ";
         }
-        line += "= " + std::to_string(rowTargets[y]);
+        line += "# = " + std::to_string(rowTargets[y]);
 
         // Operator row
         if (y < height - 1) {

@@ -5,6 +5,7 @@
 #ifndef _CALCULATOR_H_
 #define _CALCULATOR_H_
 
+#include <iostream>
 #include "board.h"
 
 /**
@@ -13,15 +14,13 @@
  */
 class Solver {
     public:
-        /**
-         * Constructor
-         */
-        Solver();
 
         /**
          * Destructor
          */
-        virtual ~Solver();
+        virtual ~Solver() {
+            // nothing
+        }
 
         /**
          * Sets the Board that this Solver will attempt to solve.
@@ -39,13 +38,33 @@ class Solver {
          * Signals the Solver to begin solving.
          * @return the solution sequence of numbers.
          */
-        virtual int * BeginSolving();
+        virtual int * BeginSolving() {
+            return NULL; // stub
+        }
+
+        /**
+         * Uses std:cout to print a progress bar of length total units, 
+         * with k units filled in.
+         * @param k the current progress, k <= total
+         * @param total the length of the progress bar
+         */
+        void UpdatePrintProgress(int k, int total);
+
+        /**
+         * Sets whether the solver will print its progress in a progress bar.
+         * @param b whether or not the solver should print its progress.
+         */
+        void setShowProgress(bool b);
 
     protected:
         Board * board;
         int width;
         int height;
         int boardlength = 0;
+
+        bool showProgress = true;
+        int printedProgress = 0;
 };
+
 #include "solver.cpp"
 #endif

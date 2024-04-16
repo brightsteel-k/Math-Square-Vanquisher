@@ -17,3 +17,18 @@ bool Solver::IsReady() {
         return false;
     return board->IsComplete();
 }
+
+void Solver::UpdatePrintProgress(int k, int total) {
+    if (printedProgress == k)
+        return;
+    printedProgress = k;
+    std::cout << "\rSEARCHING... [";
+    for (int i = 0; i < k; i++) { std::cout << '='; }
+    for (int i = 0; i < total-k; i++) { std::cout << ' '; }
+    std::cout << "]  ";
+    std::cout.flush();
+}
+
+void Solver::setShowProgress(bool b) {
+    showProgress = b;
+}

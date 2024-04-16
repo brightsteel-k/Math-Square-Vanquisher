@@ -23,6 +23,11 @@ class BacktrackSolver : public Solver {
         BacktrackSolver(bool depthFirstSearch);
 
         /**
+         * Constructor
+         */
+        BacktrackSolver():BacktrackSolver(true) {};
+
+        /**
          * Destructor
          */
         ~BacktrackSolver();
@@ -41,7 +46,18 @@ class BacktrackSolver : public Solver {
          */
         int * BeginSolving();
 
+        /**
+         * Sets the number of ticks that go by per status update during
+         * solving phase.
+         * @param t number of ticks (boards tested) per print statement.
+         */
+        void SetTicksPerPrint(int t);
+
     private:
+        int ticksPerPrint = 1000000;
+        int tick = 0;
+        //bool debugInfo = false;
+
         int * boardNumbers = NULL;
         OrderingStructure<int*> * boardsToTest = NULL;
         int * boardOptions = NULL;
@@ -76,5 +92,14 @@ class BacktrackSolver : public Solver {
          * @return true iff the board equation is fulfilled.
          */
         bool IsRowValid(int y);
+
+        
+        /**
+         * Determines if boardNumbers contains enough valid entries to fill the board.
+         * @return true iff the board is filled with valid equations.
+         */
+        bool IsBoardSolved();
 };
+
+#include "backtracksolver.cpp"
 #endif

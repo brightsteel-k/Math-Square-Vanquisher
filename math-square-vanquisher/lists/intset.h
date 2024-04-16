@@ -129,5 +129,24 @@ struct IntSet {
         }
         return newArr;
     }
+    
+    /**
+     * Returns a new integer set with the same values
+     * as the integer set arr, with a new value val added 
+     * to the end.
+     * @param arr the original integer set.
+     * @param val the value to add.
+     * @return pointer to the newly allocated integer set.
+     */
+    static int* Expand(int* arr, int val) {
+        int size = arr[0];
+        int* newArr = new int[size + 2];
+        newArr[0] = size + 1;
+        for (int i = 1; i < size + 1; i++) {
+            newArr[i] = arr[i];
+        }
+        newArr[size + 1] = val;
+        return newArr;
+    }
 };
 #endif
